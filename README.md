@@ -1,4 +1,11 @@
 # Dunite Kubernetes Configuration
+apt-get install open-iscsi
+apt-get install nfs-common
+bash, curl, findmnt, grep, awk, blkid, lsblk
+
+```
+sudo apt-get install open-iscsi nfs-common bash curl findmnt grep awk blkid lsblk
+```
 
 This repository contains the Kubernetes configuration for the Dunite cluster.
 
