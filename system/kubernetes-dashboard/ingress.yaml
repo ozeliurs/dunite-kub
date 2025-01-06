@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
         - k3s.dunite.ozeliurs.com
-      secretName: whoami-tls
+      secretName: kubernetes-dashboard-tls
   rules:
     - host: k3s.dunite.ozeliurs.com
       http:
