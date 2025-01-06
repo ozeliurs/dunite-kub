@@ -3,6 +3,27 @@ kind: Kustomization
 namespace: argocd
 resources:
   - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-  - cm.yaml
   - ingress.yaml
-  - cmd-params-cm.yaml
+
+patches:
+  - patch: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: argocd-cm
+      data:
+        kustomize.buildOptions: --enable-helm
+    target:
+      kind: ConfigMap
+      name: argocd-cm
+
+  - patch: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: argocd-cmd-params-cm
+      data:
+        server.insecure: "true"
+    target:
+      kind: ConfigMap
+      name: argocd-cmd-params-cm
