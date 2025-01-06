@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/yourusername/dunite-kub.git
+    repoURL: https://github.com/ozeliurs/dunite-kub.git
     targetRevision: HEAD
     path: workloads/apps/demo-app
   destination:
