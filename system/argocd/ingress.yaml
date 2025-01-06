@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-ingress
+  namespace: argocd
+  annotations:
+    cert-manager.io/cluster-issuer: "cloudflare-dns"
+    traefik.ingress.kubernetes.io/service.serversscheme: http
+spec:
+  tls:
+    - hosts:
+        - argocd.dunite.ozeliurs.com
+      secretName: argocd-tls
+  rules:
+    - host: argocd.dunite.ozeliurs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80
