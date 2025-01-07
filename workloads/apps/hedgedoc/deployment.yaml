@@ -32,7 +32,7 @@ spec:
             - name: CMD_DOCUMENT_MAX_LENGTH
               value: "1000000000"
             - name: CMD_DB_URL
-              value: "postgres://hedgedoc:${POSTGRES_PASSWORD}@hedgedoc-db:5432/hedgedoc"
+              value: "postgres://hedgedoc:$(POSTGRES_PASSWORD)@hedgedoc-db:5432/hedgedoc"
           volumeMounts:
             - name: hedgedoc-uploads
               mountPath: /hedgedoc/public/uploads
