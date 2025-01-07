@@ -25,6 +25,8 @@ spec:
                 secretKeyRef:
                   name: hedgedoc-secrets
                   key: postgres-password
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
           volumeMounts:
             - name: hedgedoc-db-data
               mountPath: /var/lib/postgresql/data
