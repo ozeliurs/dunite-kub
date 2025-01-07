@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hedgedoc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hedgedoc
+  template:
+    metadata:
+      labels:
+        app: hedgedoc
+    spec:
+      containers:
+        - name: hedgedoc
+          image: quay.io/hedgedoc/hedgedoc:1.10.0
+          env:
+            - name: CMD_DOMAIN
+              value: "hedgedoc.ozeliurs.com"
+            - name: CMD_PROTOCOL_USESSL
+              value: "true"
+            - name: CMD_URL_ADDPORT
+              value: "false"
+            - name: CMD_EMAIL
+              value: "true"
+            - name: CMD_DOCUMENT_MAX_LENGTH
+              value: "1000000000"
+            - name: CMD_DB_URL
+              value: "postgres://hedgedoc:$(POSTGRES_PASSWORD)@hedgedoc-db:5432/hedgedoc"
+          envFrom:
+            - secretRef:
+                name: hedgedoc-secrets
+          volumeMounts:
+            - name: hedgedoc-uploads
+              mountPath: /hedgedoc/public/uploads
+      volumes:
+        - name: hedgedoc-uploads
+          persistentVolumeClaim:
+            claimName: hedgedoc-uploads-pvc
