@@ -39,7 +39,12 @@ spec:
             initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 5
-      volumes:
-        - name: hedgedoc-db-data
-          persistentVolumeClaim:
-            claimName: hedgedoc-db-pvc
+      volumeClaimTemplates:
+        - metadata:
+            name: hedgedoc-db-data
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 1Gi
