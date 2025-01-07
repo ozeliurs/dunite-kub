@@ -11,7 +11,7 @@ spec:
     path: workloads/apps/hedgedoc
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: hedgedoc
   syncPolicy:
     automated:
       prune: true
