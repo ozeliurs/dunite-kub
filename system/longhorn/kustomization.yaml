@@ -3,12 +3,4 @@ kind: Kustomization
 
 resources:
   - https://raw.githubusercontent.com/longhorn/longhorn/v1.7.2/deploy/longhorn.yaml
-
-patches:
-  - target:
-      kind: StorageClass
-      name: longhorn
-    patch: |
-      - op: replace
-        path: /parameters/numberOfReplicas
-        value: "1"
+  - longhorn-storageclass.yaml
