@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - hedgedoc.yaml
   - cdn.yaml
+  - cf.yaml

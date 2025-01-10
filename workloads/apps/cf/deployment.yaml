@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cf
+  template:
+    metadata:
+      labels:
+        app: cf
+    spec:
+      containers:
+        - name: cf
+          image: caddy:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: caddy-config
+              mountPath: /etc/caddy/Caddyfile
+              subPath: Caddyfile
+            - name: cf-data
+              mountPath: /cf
+      volumes:
+        - name: caddy-config
+          configMap:
+            name: caddy-config
+        - name: cf-data
+          persistentVolumeClaim:
+            claimName: cf-pvc
