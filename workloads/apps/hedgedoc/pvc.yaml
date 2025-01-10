@@ -8,7 +8,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: longhorn
+  storageClassName: longhorn-1-replica
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
