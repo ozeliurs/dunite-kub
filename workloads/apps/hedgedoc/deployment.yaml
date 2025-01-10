@@ -36,11 +36,7 @@ spec:
           volumeMounts:
             - name: hedgedoc-uploads
               mountPath: /hedgedoc/public/uploads
-      volumeClaimTemplates:
-        - metadata:
-            name: hedgedoc-uploads
-          spec:
-            accessModes: ["ReadWriteOnce"]
-            resources:
-              requests:
-                storage: 1Gi
+      volumes:
+        - name: hedgedoc-uploads
+          persistentVolumeClaim:
+            claimName: hedgedoc-uploads-pvc
