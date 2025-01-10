@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: caddy-config
+data:
+  Caddyfile: |
+    :80 {
+        root * /cdn
+        file_server browse
+
+        @privateFolder {
+            path /private/*
+        }
+
+        basic_auth @privateFolder {
+            admin $2y$05$fzav5O8FcY7imP9FAjxgb./NUjrpUd3/tuYBm6.tHwfpKj5kqVsIG
+        }
+    }

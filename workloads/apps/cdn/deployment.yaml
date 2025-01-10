@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cdn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cdn
+  template:
+    metadata:
+      labels:
+        app: cdn
+    spec:
+      containers:
+        - name: cdn
+          image: caddy:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: caddy-config
+              mountPath: /etc/caddy/Caddyfile
+              subPath: Caddyfile
+            - name: cdn-data
+              mountPath: /cdn
+      volumes:
+        - name: caddy-config
+          configMap:
+            name: caddy-config
+        - name: cdn-data
+          persistentVolumeClaim:
+            claimName: cdn-pvc
