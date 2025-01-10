@@ -5,3 +5,4 @@ resources:
   - hedgedoc.yaml
   - cdn.yaml
   - cf.yaml
+  - flame.yaml

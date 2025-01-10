@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flame
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ozeliurs/dunite-kub.git
+    targetRevision: HEAD
+    path: workloads/apps/flame
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: flame
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
