@@ -35,3 +35,447 @@ spec:
                 - gatus.ozeliurs.com
         persistence:
           storageClass: longhorn-1-replica
+        config:
+          storage:
+            type: sqlite
+            path: /data/data.db
+
+          connectivity:
+            checker:
+              target: 1.1.1.1:53
+              interval: 60s
+
+          alerting:
+            discord:
+              webhook-url: "${DISCORD_WEBHOOK_URL}"
+
+          endpoints:
+            # ======================= Ozeliurs Services =======================
+            - name: ozeliurs-com
+              group: ozeliurs
+              url: "https://www.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the website ozeliurs.com is down!"
+                  send-on-resolved: true
+
+            - name: hedgedoc
+              group: ozeliurs
+              url: "https://hedgedoc.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the website hedgedoc.ozeliurs.com is down!"
+                  send-on-resolved: true
+
+            - name: bookstack
+              group: ozeliurs
+              url: "https://bookstack.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the website bookstack.ozeliurs.com is down!"
+                  send-on-resolved: true
+
+            - name: flame
+              group: ozeliurs
+              url: "https://flame.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the website flame.ozeliurs.com is down!"
+                  send-on-resolved: true
+
+            - name: wakapi
+              group: ozeliurs
+              url: "https://wakapi.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the website wakapi.ozeliurs.com is down!"
+                  send-on-resolved: true
+
+            - name: forgejo
+              group: ozeliurs
+              url: "https://git.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the website git.ozeliurs.com is down!"
+                  send-on-resolved: true
+
+            - name: headscale
+              group: ozeliurs
+              url: "https://headscale.ozeliurs.com/windows"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the website headscale.ozeliurs.com is down!"
+                  send-on-resolved: true
+
+            - name: infisical
+              group: ozeliurs
+              url: "https://infisical.ozeliurs.com"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the website infisical.ozeliurs.com is down!"
+                  send-on-resolved: true
+
+            - name: fusion
+              group: ozeliurs
+              url: "https://fusion.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the website fusion.ozeliurs.com is down!"
+                  send-on-resolved: true
+
+            - name: vaultwarden
+              group: ozeliurs
+              url: "https://vaultwarden.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the website vaultwarden.ozeliurs.com is down!"
+                  send-on-resolved: true
+
+            - name: paperless
+              group: ozeliurs
+              url: "https://paper.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the website paper.ozeliurs.com is down!"
+                  send-on-resolved: true
+
+            - name: gatus
+              group: ozeliurs
+              url: "https://gatus.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+
+            # ======================= Apoo Services =======================
+            - name: sonarqube
+              group: apoo
+              url: "https://sonarqube.devops-tools.apoorva64.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello, your SonarQube instance is down!"
+                  send-on-resolved: true
+
+            - name: sentry
+              group: apoo
+              url: "https://sentry.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello, your Sentry instance is down!"
+                  send-on-resolved: true
+
+            # ======================= Edgar Services =======================
+            - name: horus
+              group: edgar
+              url: "https://horus.bizel.fr/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 403"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@294090174650908672>, your Horus instance is down!"
+                  send-on-resolved: true
+
+            # ======================= Polytech Services ====================
+            - name: auth
+              group: polytech
+              url: "https://login.univ-cotedazur.fr/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Polytech is dying, as always! The auth service is down!"
+                  send-on-resolved: true
+
+            - name: edt
+              group: polytech
+              url: "https://sco.polytech.unice.fr/1/invite?login=true"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Polytech is dying, as always! The edt service is down!"
+                  send-on-resolved: true
+
+            - name: moodle
+              group: polytech
+              url: "https://lms.univ-cotedazur.fr/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Polytech is dying, as always! The moodle service is down!"
+                  send-on-resolved: true
+
+            - name: polytech
+              group: polytech
+              url: "https://polytech.univ-cotedazur.fr/"
+              interval: 1m
+              client:
+                insecure: true
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Polytech is dying, as always! The website polytech.unice.fr is down!"
+                  send-on-resolved: true
+
+            - name: vella-vm
+              group: polytech
+              url: "http://quoridorarena.ps8.academy/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+              alerts:
+                - type: discord
+                  description: "Vella didn't pay the bills, the VM is down!"
+                  send-on-resolved: true
+
+            # ======================= Internal Services ====================
+            - name: fbx-ping
+              group: internal
+              url: "icmp://fbx.ozeliurs.com"
+              interval: 1m
+              conditions:
+                - "[CONNECTED] == true"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the Freebox is down!"
+                  send-on-resolved: true
+
+            - name: fbx-spamhaus
+              group: internal
+              url: "1.1.1.1"
+              dns:
+                query-name: "187.214.65.82.zen.spamhaus.org"
+                query-type: A
+              interval: 24h
+              conditions:
+                - "[BODY] == 127.255.255.254"
+                - "[DNS_RCODE] == NOERROR"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the Freebox is blacklisted!"
+                  send-on-resolved: true
+
+            - name: fbx-tor
+              group: internal
+              url: "1.1.1.1"
+              dns:
+                query-name: "187.214.65.82.tor.dan.me.uk"
+                query-type: A
+              interval: 24h
+              conditions:
+                - "[BODY] != 127.0.0.100"
+                - "[DNS_RCODE] == NXDOMAIN"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the Freebox is on the Tor blacklist!"
+                  send-on-resolved: true
+
+            - name: proxmox
+              group: internal
+              url: "https://granite.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the Proxmox instance is down!"
+                  send-on-resolved: true
+
+            - name: wazuh
+              group: internal
+              url: "https://latite.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the Wazuh instance is down!"
+                  send-on-resolved: true
+
+            - name: grafana
+              group: internal
+              url: "https://grafana.adakite.ozeliurs.com/"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the Grafana instance is down!"
+                  send-on-resolved: true
+
+            # ======================= Kubernetes Nodes ======================
+
+            - name: node-apoorva
+              group: kubernetes
+              url: "icmp://158.178.207.158"
+              interval: 1m
+              conditions:
+                - "[CONNECTED] == true"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the node-apoorva is down!"
+                  send-on-resolved: true
+
+            - name: node-maxime
+              group: kubernetes
+              url: "icmp://158.101.222.29"
+              interval: 1m
+              conditions:
+                - "[CONNECTED] == true"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the node-maxime is down!"
+                  send-on-resolved: true
+
+            - name: node-nino2
+              group: kubernetes
+              url: "icmp://130.61.31.16"
+              interval: 1m
+              conditions:
+                - "[CONNECTED] == true"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the node-nino2 is down!"
+                  send-on-resolved: true
+
+            - name: node-raphael
+              group: kubernetes
+              url: "icmp://129.151.254.9"
+              interval: 1m
+              conditions:
+                - "[CONNECTED] == true"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the node-raphael is down!"
+                  send-on-resolved: true
+
+            - name: node-tom
+              group: kubernetes
+              url: "icmp://129.151.255.181"
+              interval: 1m
+              conditions:
+                - "[CONNECTED] == true"
+              alerts:
+                - type: discord
+                  description: "Hello <@325623032456413186>, the node-tom is down!"
+                  send-on-resolved: true
+
+            # ======================= Public Monitors =======================
+            - name: github
+              group: public
+              url: "https://github.com/"
+              interval: 10m
+              conditions:
+                - "[STATUS] == 200"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+              alerts:
+                - type: discord
+                  description: "Hello, GitHub is down!"
+                  send-on-resolved: true
+
+            # ======================= DNS Monitors =======================
+            - name: dns-cloudflare
+              group: dns
+              url: "1.1.1.1"
+              dns:
+                query-name: "example.com"
+                query-type: A
+              interval: 24h
+              conditions:
+                - "[DNS_RCODE] == NOERROR"
+
+            - name: dns-google
+              group: dns
+              url: "8.8.8.8"
+              dns:
+                query-name: "example.com"
+                query-type: A
+              interval: 24h
+              conditions:
+                - "[DNS_RCODE] == NOERROR"
+
+            - name: dns-quad9
+              group: dns
+              url: "9.9.9.9"
+              dns:
+                query-name: "example.com"
+                query-type: A
+              interval: 24h
+              conditions:
+                - "[DNS_RCODE] == NOERROR"
+
+            - name: dns-opendns
+              group: dns
+              url: "208.67.222.222"
+              dns:
+                query-name: "example.com"
+                query-type: A
+              interval: 24h
+              conditions:
+                - "[DNS_RCODE] == NOERROR"
