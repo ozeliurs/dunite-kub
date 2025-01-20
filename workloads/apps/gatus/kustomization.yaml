@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: gatus
 
 resources:
-  - cm.yaml
   - sealed-secret.yaml
