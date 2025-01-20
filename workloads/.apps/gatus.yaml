@@ -25,6 +25,7 @@ spec:
         releaseName: gatus
         valuesObject:
           env:
+            GATUS_CONFIG_PATH: /config/config.yaml
             DISCORD_WEBHOOK_URL:
               valueFrom:
                 secretKeyRef:
