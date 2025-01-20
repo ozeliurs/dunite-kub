@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gatus
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: gatus
+  source:
+    chart: gatus
+    repoURL: https://twin.github.io/helm-charts
+    targetRevision: 1.1.0
+    helm:
+      releaseName: gatus
+      valuesObject:
+        ingress:
+          enabled: true
+          hosts:
+            - gatus.ozeliurs.com
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.tls: "true"
+          tls:
+            - secretName: gatus-tls
+              hosts:
+                - gatus.ozeliurs.com
+        persistence:
+          storageClass: longhorn-1-replica

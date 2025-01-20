@@ -6,3 +6,4 @@ resources:
   - cdn.yaml
   - cf.yaml
   - flame.yaml
+  - gatus.yaml
