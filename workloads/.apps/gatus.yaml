@@ -45,9 +45,9 @@ spec:
               target: 1.1.1.1:53
               interval: 60s
 
-          alerting:
-            discord:
-              webhook-url: "${DISCORD_WEBHOOK_URL}"
+          #alerting:
+          #  discord:
+          #    webhook-url: "${DISCORD_WEBHOOK_URL}"
 
           endpoints:
             # ======================= Ozeliurs Services =======================
