@@ -33,7 +33,7 @@ spec:
                   key: discord-webhook-url
           extraVolumeMounts:
             - name: gatus-config
-              mountPath: /config/config.yaml
+              mountPath: /config
               existingConfigMap: gatus-config
               readOnly: true
           ingress:
