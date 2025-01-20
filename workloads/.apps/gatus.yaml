@@ -32,7 +32,7 @@ spec:
                   name: gatus-secret
                   key: discord-webhook-url
           extraVolumeMounts:
-            - name: gatus-config
+            - name: gatus
               mountPath: /config
               existingConfigMap: gatus
               readOnly: true
