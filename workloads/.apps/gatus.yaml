@@ -34,7 +34,7 @@ spec:
           extraVolumeMounts:
             - name: gatus-config
               mountPath: /config
-              existingConfigMap: gatus-config
+              existingConfigMap: gatus
               readOnly: true
           ingress:
             enabled: true
