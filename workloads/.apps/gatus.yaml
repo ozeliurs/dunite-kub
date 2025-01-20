@@ -31,11 +31,6 @@ spec:
                 secretKeyRef:
                   name: gatus-secret
                   key: discord-webhook-url
-          extraVolumeMounts:
-            - name: gatus
-              mountPath: /config
-              existingConfigMap: gatus
-              readOnly: true
           ingress:
             enabled: true
             hosts:
